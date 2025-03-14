@@ -3,6 +3,7 @@ package model
 import (
 	"fmt"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -86,9 +87,20 @@ type SubjectStatus struct {
 	Details string      `json:"statusDetails,omitempty"`
 }
 
-type MacStatus map[Subject]*SubjectStatus
+type MacStatus struct {
+	m        map[Subject]*SubjectStatus
+	mu       *sync.Mutex
+	modified bool
+}
 
-var MacStat MacStatus = make(MacStatus)
+var MacStat = NewMacStatus()
+
+func NewMacStatus() *MacStatus {
+	return &MacStatus{
+		m:  make(map[Subject]*SubjectStatus),
+		mu: &sync.Mutex{},
+	}
+}
 
 func NewStatus(status Status, details string) (st *SubjectStatus) {
 	st = newStatus()
@@ -98,15 +110,25 @@ func NewStatus(status Status, details string) (st *SubjectStatus) {
 }
 
 func (ms MacStatus) SetStatus(subject Subject, st *SubjectStatus) {
-	ms[subject] = st
+	ms.mu.Lock()
+	defer ms.mu.Unlock()
+	ms.m[subject] = st
+	ms.modified = true
 }
 
-func (ms MacStatus) GetOverallStatus() *SubjectStatus {
-	overallStatus := newStatus()
-	for s, v := range ms {
+// GetOverallStatus returns the overall status of the MacStatus and
+// a boolean indicating whether the status has been modified since the last call.
+// It sets the modified flag to false after returning the status.
+func (ms MacStatus) GetOverallStatus() (overallStatus *SubjectStatus, modified bool) {
+	ms.mu.Lock()
+	defer ms.mu.Unlock()
+	modified = ms.modified
+	ms.modified = false
+	overallStatus = newStatus()
+	for s, v := range ms.m {
 		aggregate(s, overallStatus, v)
 	}
-	return overallStatus
+	return
 }
 
 func newStatus() *SubjectStatus {

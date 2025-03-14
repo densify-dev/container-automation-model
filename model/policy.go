@@ -18,6 +18,6 @@ type Policies struct {
 	PoliciesByName map[string]*Policy `json:"policiesByName",yaml:"policiesbyname"`
 }
 
-func (p *Policy) isEnabled(r Resource, al Allocation, ac Action) bool {
+func (p *Policy) IsEnabled(r Resource, al Allocation, ac Action) bool {
 	return p != nil && p.Enablement[r][al][ac]
 }
