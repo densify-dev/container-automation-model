@@ -24,8 +24,7 @@ type Recommendation struct {
 	RecommendedMemLimitBytes     int64     `json:"recommendedMemLimitBytes"`
 	EstimatedSavingsPerContainer float64   `json:"estimatedSavingsPerContainer"`
 	AnalyzedOn                   time.Time `json:"analyzedOn"`
-	AutomationPolicy             string    `json:"automationPolicy"`
-	HpaMetricThreshold           float64   `json:"hpaMetricThreshold"`
+	HpaMetricName                string    `json:"hpaMetricName"`
 }
 type Recommendations struct {
 	Checksum string            `json:"checksum"`
