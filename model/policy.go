@@ -15,6 +15,7 @@ type Policy struct {
 }
 
 type Policies struct {
+	DefaultPolicy  string             `json:"defaultPolicy",yaml:"defaultpolicy"`
 	PoliciesByName map[string]*Policy `json:"policiesByName",yaml:"policiesbyname"`
 }
 
