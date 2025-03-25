@@ -15,8 +15,9 @@ type Policy struct {
 }
 
 type Policies struct {
-	DefaultPolicy  string             `json:"defaultPolicy",yaml:"defaultpolicy"`
-	PoliciesByName map[string]*Policy `json:"policiesByName",yaml:"policiesbyname"`
+	AutomationEnabled bool               `json:"automationEnabled",yaml:"automationenabled"`
+	DefaultPolicy     string             `json:"defaultPolicy",yaml:"defaultpolicy"`
+	PoliciesByName    map[string]*Policy `json:"policiesByName",yaml:"policiesbyname"`
 }
 
 func (p *Policy) IsEnabled(r Resource, al Allocation, ac Action) bool {
