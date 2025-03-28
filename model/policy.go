@@ -16,6 +16,7 @@ type Policy struct {
 
 type Policies struct {
 	AutomationEnabled bool               `json:"automationEnabled",yaml:"automationenabled"`
+	RemoteEnablement  bool               `json:"remoteEnablement",yaml:"remoteenablement"`
 	DefaultPolicy     string             `json:"defaultPolicy",yaml:"defaultpolicy"`
 	PoliciesByName    map[string]*Policy `json:"policiesByName",yaml:"policiesbyname"`
 }

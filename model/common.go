@@ -3,6 +3,7 @@ package model
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -25,12 +26,16 @@ const (
 	Limit   Allocation = "limit"
 )
 
+const (
+	DoubleQuote = `"`
+)
+
 func Quote(s string) string {
-	return fmt.Sprintf(`"%s"`, s)
+	return fmt.Sprintf("%s%s%s", DoubleQuote, s, DoubleQuote)
 }
 
 func Unquote(s string) string {
-	return strings.Trim(s, `"`)
+	return strings.Trim(s, DoubleQuote)
 }
 
 const (
@@ -47,6 +52,20 @@ func (rt *RFC3339Time) UnmarshalJSON(data []byte) (err error) {
 	var t time.Time
 	if t, err = time.Parse(RFC3339Micro, Unquote(string(data))); err == nil {
 		*rt = RFC3339Time(t)
+	}
+	return
+}
+
+type StringBool bool
+
+func (sb StringBool) MarshalJSON() ([]byte, error) {
+	return []byte(Quote(strconv.FormatBool(bool(sb)))), nil
+}
+
+func (sb *StringBool) UnmarshalJSON(data []byte) (err error) {
+	var b bool
+	if b, err = strconv.ParseBool(Unquote(string(data))); err == nil {
+		*sb = StringBool(b)
 	}
 	return
 }
