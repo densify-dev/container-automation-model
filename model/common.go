@@ -27,7 +27,14 @@ const (
 )
 
 const (
+	Empty       = ""
 	DoubleQuote = `"`
+	Dash        = "-"
+	Colon       = ":"
+	Comma       = ","
+	Space       = " "
+	Or          = "|"
+	NilString   = "<nil>"
 )
 
 func Quote(s string) string {
