@@ -45,9 +45,9 @@ func (p *Policy) String() string {
 				}
 			}
 			if len(vs) > 0 {
-				s = append(s, fmt.Sprintf("%s%s%s", fmt.Sprintf("%v", ks), Space+Colon+Space, fmt.Sprintf("%v", vs)))
+				s = append(s, fmt.Sprintf("%s%s%s", fmt.Sprintf("%v", ks), Spaces(Colon), fmt.Sprintf("%v", vs)))
 			}
 		}
 	}
-	return strings.Join(s, Space+Or+Space)
+	return strings.Join(s, Spaces(Or))
 }
