@@ -10,7 +10,7 @@ type ContainerMutation struct {
 	EntityId    string                                `json:"entityId"`
 	ContainerId string                                `json:"containerId"`
 	PolicyName  string                                `json:"policyName"`
-	Operation   string                                `json:"operation"`
+	Operation   string                                `json:"operation,omitempty"`
 	Mutations   map[Resource]map[Allocation]*Mutation `json:"mutations"`
 }
 
