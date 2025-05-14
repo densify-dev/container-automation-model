@@ -11,6 +11,7 @@ type ContainerMutation struct {
 	ContainerId string                                `json:"containerId"`
 	PolicyName  string                                `json:"policyName"`
 	Operation   string                                `json:"operation,omitempty"`
+	Source      string                                `json:"source,omitempty"`
 	Mutations   map[Resource]map[Allocation]*Mutation `json:"mutations"`
 }
 
