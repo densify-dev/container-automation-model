@@ -8,9 +8,10 @@ import (
 type Action string
 
 const (
-	Upsize                 Action = "upsize"
-	Downsize               Action = "downsize"
-	SetUninitializedValues Action = "set-uninitialized-values"
+	Upsize             Action = "upsize"
+	Downsize           Action = "downsize"
+	SetFromUnspecified Action = "set-from-unspecified"
+	UnsetFromSpecified Action = "unset-from-specified"
 )
 
 type ActionPolicy map[Action]bool
