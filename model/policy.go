@@ -1,54 +1,48 @@
 package model
 
-import (
-	"fmt"
-	"strings"
-)
-
 type Action string
 
 const (
 	Upsize             Action = "upsize"
 	Downsize           Action = "downsize"
-	SetFromUnspecified Action = "set-from-unspecified"
-	UnsetFromSpecified Action = "unset-from-specified"
+	SetFromUnspecified Action = "setFromUnspecified"
+	UnsetFromSpecified Action = "unsetFromSpecified"
 )
 
 type ActionPolicy map[Action]bool
 
+type Strategy struct {
+	Enabled  bool   `json:"enabled" yaml:"enabled"`
+	Schedule string `json:"schedule,omitempty" yaml:"schedule,omitempty"`
+}
+
+type SafetyChecks struct {
+	CooldownAfterSpecChangeDays int `json:"cooldownAfterSpecChangeDays" yaml:"cooldownAfterSpecChangeDays"`
+	MaxAnalysisAgeDays          int `json:"maxAnalysisAgeDays" yaml:"maxAnalysisAgeDays"`
+	PodPendingRollbackPeriod    int `json:"podPendingRollbackPeriod" yaml:"podPendingRollbackPeriod"`
+}
+
+type ResourceQuotaChecks struct {
+	MinQuotaHeadroomPercentForUpsize int `json:"minQuotaHeadroomPercentForUpsize" yaml:"minQuotaHeadroomPercentForUpsize"`
+}
+
 type Policy struct {
-	Enablement map[Resource]map[Allocation]ActionPolicy `json:"enablement",yaml:"enablement"`
+	AllowedPodOwners              string                                   `json:"allowedPodOwners,omitempty" yaml:"allowedPodOwners,omitempty"`
+	Enablement                    map[Resource]map[Allocation]ActionPolicy `json:"enablement" yaml:"enablement"`
+	InPlaceResize                 Strategy                                 `json:"inPlaceResize" yaml:"inPlaceResize"`
+	InPlaceResizeContainerRestart Strategy                                 `json:"inPlaceResizeContainerRestart" yaml:"inPlaceResizeContainerRestart"`
+	PodEviction                   Strategy                                 `json:"podEviction" yaml:"podEviction"`
+	SafetyChecks                  SafetyChecks                             `json:"safetyChecks" yaml:"safetyChecks"`
+	ResourceQuotaChecks           ResourceQuotaChecks                      `json:"resourceQuotaChecks" yaml:"resourceQuotaChecks"`
 }
 
 type Policies struct {
-	AutomationEnabled bool               `json:"automationEnabled",yaml:"automationenabled"`
-	RemoteEnablement  bool               `json:"remoteEnablement",yaml:"remoteenablement"`
-	DefaultPolicy     string             `json:"defaultPolicy",yaml:"defaultpolicy"`
-	PoliciesByName    map[string]*Policy `json:"policiesByName",yaml:"policiesbyname"`
+	AutomationEnabled bool               `json:"automationEnabled" yaml:"automationEnabled"`
+	RemoteEnablement  bool               `json:"remoteEnablement" yaml:"remoteEnablement"`
+	DefaultPolicy     string             `json:"defaultPolicy" yaml:"defaultPolicy"`
+	Policies          map[string]*Policy `json:"policies" yaml:"policies"`
 }
 
 func (p *Policy) IsEnabled(r Resource, al Allocation, ac Action) bool {
 	return p != nil && p.Enablement[r][al][ac]
-}
-
-func (p *Policy) String() string {
-	if p == nil {
-		return NilString
-	}
-	var s []string
-	for r, als := range p.Enablement {
-		for al, acs := range als {
-			var ks = []any{r, al}
-			var vs []any
-			for ac, enabled := range acs {
-				if enabled {
-					vs = append(vs, ac)
-				}
-			}
-			if len(vs) > 0 {
-				s = append(s, fmt.Sprintf("%s%s%s", fmt.Sprintf("%v", ks), Spaces(Colon), fmt.Sprintf("%v", vs)))
-			}
-		}
-	}
-	return strings.Join(s, Spaces(Or))
 }
