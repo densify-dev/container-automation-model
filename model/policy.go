@@ -36,6 +36,10 @@ type Policy struct {
 	ResourceQuotaChecks           ResourceQuotaChecks                      `json:"resourceQuotaChecks" yaml:"resourceQuotaChecks"`
 }
 
+func (p *Policy) IsEnabled(r Resource, al Allocation, ac Action) bool {
+	return p != nil && p.Enablement[r][al][ac]
+}
+
 type Policies struct {
 	AutomationEnabled bool               `json:"automationEnabled" yaml:"automationEnabled"`
 	RemoteEnablement  bool               `json:"remoteEnablement" yaml:"remoteEnablement"`
@@ -43,6 +47,27 @@ type Policies struct {
 	Policies          map[string]*Policy `json:"policies" yaml:"policies"`
 }
 
-func (p *Policy) IsEnabled(r Resource, al Allocation, ac Action) bool {
-	return p != nil && p.Enablement[r][al][ac]
+type Operator string
+
+const (
+	OperatorIn    Operator = "In"
+	OperatorNotIn Operator = "NotIn"
+)
+
+type Selector struct {
+	Operator Operator `json:"operator" yaml:"operator"`
+	Values   []string `json:"values" yaml:"values"`
 }
+
+type KeySelector struct {
+	Selector `json:",inline" yaml:",inline"`
+	Key      string `json:"key" yaml:"key"`
+}
+
+type Scope struct {
+	PolicyName string      `json:"policyName" yaml:"policyName"`
+	Namespaces Selector    `json:"namespaces" yaml:"namespaces"`
+	PodLabels  KeySelector `json:"podLabels" yaml:"podLabels"`
+}
+
+type Scopes map[string]Scope
