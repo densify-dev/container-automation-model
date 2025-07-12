@@ -65,9 +65,9 @@ type KeySelector struct {
 }
 
 type Scope struct {
-	PolicyName string      `json:"policyName" yaml:"policyName"`
-	Namespaces Selector    `json:"namespaces" yaml:"namespaces"`
-	PodLabels  KeySelector `json:"podLabels" yaml:"podLabels"`
+	PolicyName string        `json:"policyName" yaml:"policyName"`
+	Namespaces Selector      `json:"namespaces" yaml:"namespaces"`
+	PodLabels  []KeySelector `json:"podLabels" yaml:"podLabels"`
 }
 
 type Scopes map[string]Scope
