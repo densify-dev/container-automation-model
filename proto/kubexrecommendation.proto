@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package model;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "densify.com/container-automation-model/model";
+
+// KubexRecommendation is the top-level message for a recommendation.
+message KubexRecommendation {
+  string name = 1;
+  string kind = 2;
+  string namespace = 3;
+  repeated OwnerReference owner_references = 4;
+  repeated Container containers = 5;
+}
+
+// Container represents the recommendation details for a single container within a workload.
+message Container {
+  string container = 1;
+  string entity_id = 2;
+  string container_id = 3;
+  bool automation_enabled = 4;
+  bool suspend_automation = 5;
+  string suspended_on = 6;
+  repeated string hpa_scaling_metrics = 7;
+  repeated RecommendedResources recommended_resources = 8;
+  google.protobuf.Timestamp analyzed_on = 9;
+  repeated RecommendedResources current_resources = 10;
+  int32 avg_container_count = 11;
+  double estimated_savings_per_container = 12;
+}
+
+// RecommendedResources holds the request and limit values for a resource.
+message RecommendedResources {
+  ResourceLimit request = 1;
+  ResourceLimit limit = 2;
+}
+
+// ResourceLimit defines the CPU and Memory values.
+message ResourceLimit {
+  string cpu = 1;
+  string memory = 2;
+}
+
+// OwnerReference identifies the owner of a Kubernetes object.
+message OwnerReference {
+  string name = 1;
+  string kind = 2;
+}
