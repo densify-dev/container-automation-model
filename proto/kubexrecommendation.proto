@@ -22,13 +22,19 @@ message Container {
   string container_id = 3;
   bool automation_enabled = 4;
   bool suspend_automation = 5;
-  string suspended_on = 6;
+  google.protobuf.Timestamp suspended_on = 6;
   repeated string hpa_scaling_metrics = 7;
   repeated RecommendedResources recommended_resources = 8;
   google.protobuf.Timestamp analyzed_on = 9;
   repeated RecommendedResources current_resources = 10;
-  int32 avg_container_count = 11;
-  double estimated_savings_per_container = 12;
+  OwnerSpecs owner_specs = 11;
+}
+
+// OwnerSpecs holds the specifications at the level of the pod owner.
+message OwnerSpecs {
+  repeated RecommendedResources current_spec = 1;
+  repeated RecommendedResources previous_spec = 2;
+  google.protobuf.Timestamp spec_change_date = 3;
 }
 
 // RecommendedResources holds the request and limit values for a resource.

@@ -36,7 +36,7 @@ type KubexRecommendation struct {
 
 func (x *KubexRecommendation) Reset() {
 	*x = KubexRecommendation{}
-	mi := &file_kubexrecommendation_proto_msgTypes[0]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +48,7 @@ func (x *KubexRecommendation) String() string {
 func (*KubexRecommendation) ProtoMessage() {}
 
 func (x *KubexRecommendation) ProtoReflect() protoreflect.Message {
-	mi := &file_kubexrecommendation_proto_msgTypes[0]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *KubexRecommendation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KubexRecommendation.ProtoReflect.Descriptor instead.
 func (*KubexRecommendation) Descriptor() ([]byte, []int) {
-	return file_kubexrecommendation_proto_rawDescGZIP(), []int{0}
+	return file_proto_kubexrecommendation_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *KubexRecommendation) GetName() string {
@@ -101,26 +101,25 @@ func (x *KubexRecommendation) GetContainers() []*Container {
 
 // Container represents the recommendation details for a single container within a workload.
 type Container struct {
-	state                        protoimpl.MessageState  `protogen:"open.v1"`
-	Container                    string                  `protobuf:"bytes,1,opt,name=container,proto3" json:"container,omitempty"`
-	EntityId                     string                  `protobuf:"bytes,2,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
-	ContainerId                  string                  `protobuf:"bytes,3,opt,name=container_id,json=containerId,proto3" json:"container_id,omitempty"`
-	AutomationEnabled            bool                    `protobuf:"varint,4,opt,name=automation_enabled,json=automationEnabled,proto3" json:"automation_enabled,omitempty"`
-	SuspendAutomation            bool                    `protobuf:"varint,5,opt,name=suspend_automation,json=suspendAutomation,proto3" json:"suspend_automation,omitempty"`
-	SuspendedOn                  string                  `protobuf:"bytes,6,opt,name=suspended_on,json=suspendedOn,proto3" json:"suspended_on,omitempty"`
-	HpaScalingMetrics            []string                `protobuf:"bytes,7,rep,name=hpa_scaling_metrics,json=hpaScalingMetrics,proto3" json:"hpa_scaling_metrics,omitempty"`
-	RecommendedResources         []*RecommendedResources `protobuf:"bytes,8,rep,name=recommended_resources,json=recommendedResources,proto3" json:"recommended_resources,omitempty"`
-	AnalyzedOn                   *timestamppb.Timestamp  `protobuf:"bytes,9,opt,name=analyzed_on,json=analyzedOn,proto3" json:"analyzed_on,omitempty"`
-	CurrentResources             []*RecommendedResources `protobuf:"bytes,10,rep,name=current_resources,json=currentResources,proto3" json:"current_resources,omitempty"`
-	AvgContainerCount            int32                   `protobuf:"varint,11,opt,name=avg_container_count,json=avgContainerCount,proto3" json:"avg_container_count,omitempty"`
-	EstimatedSavingsPerContainer float64                 `protobuf:"fixed64,12,opt,name=estimated_savings_per_container,json=estimatedSavingsPerContainer,proto3" json:"estimated_savings_per_container,omitempty"`
-	unknownFields                protoimpl.UnknownFields
-	sizeCache                    protoimpl.SizeCache
+	state                protoimpl.MessageState  `protogen:"open.v1"`
+	Container            string                  `protobuf:"bytes,1,opt,name=container,proto3" json:"container,omitempty"`
+	EntityId             string                  `protobuf:"bytes,2,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
+	ContainerId          string                  `protobuf:"bytes,3,opt,name=container_id,json=containerId,proto3" json:"container_id,omitempty"`
+	AutomationEnabled    bool                    `protobuf:"varint,4,opt,name=automation_enabled,json=automationEnabled,proto3" json:"automation_enabled,omitempty"`
+	SuspendAutomation    bool                    `protobuf:"varint,5,opt,name=suspend_automation,json=suspendAutomation,proto3" json:"suspend_automation,omitempty"`
+	SuspendedOn          *timestamppb.Timestamp  `protobuf:"bytes,6,opt,name=suspended_on,json=suspendedOn,proto3" json:"suspended_on,omitempty"`
+	HpaScalingMetrics    []string                `protobuf:"bytes,7,rep,name=hpa_scaling_metrics,json=hpaScalingMetrics,proto3" json:"hpa_scaling_metrics,omitempty"`
+	RecommendedResources []*RecommendedResources `protobuf:"bytes,8,rep,name=recommended_resources,json=recommendedResources,proto3" json:"recommended_resources,omitempty"`
+	AnalyzedOn           *timestamppb.Timestamp  `protobuf:"bytes,9,opt,name=analyzed_on,json=analyzedOn,proto3" json:"analyzed_on,omitempty"`
+	CurrentResources     []*RecommendedResources `protobuf:"bytes,10,rep,name=current_resources,json=currentResources,proto3" json:"current_resources,omitempty"`
+	OwnerSpecs           *OwnerSpecs             `protobuf:"bytes,11,opt,name=owner_specs,json=ownerSpecs,proto3" json:"owner_specs,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *Container) Reset() {
 	*x = Container{}
-	mi := &file_kubexrecommendation_proto_msgTypes[1]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -132,7 +131,7 @@ func (x *Container) String() string {
 func (*Container) ProtoMessage() {}
 
 func (x *Container) ProtoReflect() protoreflect.Message {
-	mi := &file_kubexrecommendation_proto_msgTypes[1]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -145,7 +144,7 @@ func (x *Container) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Container.ProtoReflect.Descriptor instead.
 func (*Container) Descriptor() ([]byte, []int) {
-	return file_kubexrecommendation_proto_rawDescGZIP(), []int{1}
+	return file_proto_kubexrecommendation_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Container) GetContainer() string {
@@ -183,11 +182,11 @@ func (x *Container) GetSuspendAutomation() bool {
 	return false
 }
 
-func (x *Container) GetSuspendedOn() string {
+func (x *Container) GetSuspendedOn() *timestamppb.Timestamp {
 	if x != nil {
 		return x.SuspendedOn
 	}
-	return ""
+	return nil
 }
 
 func (x *Container) GetHpaScalingMetrics() []string {
@@ -218,18 +217,72 @@ func (x *Container) GetCurrentResources() []*RecommendedResources {
 	return nil
 }
 
-func (x *Container) GetAvgContainerCount() int32 {
+func (x *Container) GetOwnerSpecs() *OwnerSpecs {
 	if x != nil {
-		return x.AvgContainerCount
+		return x.OwnerSpecs
 	}
-	return 0
+	return nil
 }
 
-func (x *Container) GetEstimatedSavingsPerContainer() float64 {
+// OwnerSpecs holds the specifications at the level of the pod owner.
+type OwnerSpecs struct {
+	state          protoimpl.MessageState  `protogen:"open.v1"`
+	CurrentSpec    []*RecommendedResources `protobuf:"bytes,1,rep,name=current_spec,json=currentSpec,proto3" json:"current_spec,omitempty"`
+	PreviousSpec   []*RecommendedResources `protobuf:"bytes,2,rep,name=previous_spec,json=previousSpec,proto3" json:"previous_spec,omitempty"`
+	SpecChangeDate *timestamppb.Timestamp  `protobuf:"bytes,3,opt,name=spec_change_date,json=specChangeDate,proto3" json:"spec_change_date,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *OwnerSpecs) Reset() {
+	*x = OwnerSpecs{}
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OwnerSpecs) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OwnerSpecs) ProtoMessage() {}
+
+func (x *OwnerSpecs) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[2]
 	if x != nil {
-		return x.EstimatedSavingsPerContainer
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
 	}
-	return 0
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OwnerSpecs.ProtoReflect.Descriptor instead.
+func (*OwnerSpecs) Descriptor() ([]byte, []int) {
+	return file_proto_kubexrecommendation_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *OwnerSpecs) GetCurrentSpec() []*RecommendedResources {
+	if x != nil {
+		return x.CurrentSpec
+	}
+	return nil
+}
+
+func (x *OwnerSpecs) GetPreviousSpec() []*RecommendedResources {
+	if x != nil {
+		return x.PreviousSpec
+	}
+	return nil
+}
+
+func (x *OwnerSpecs) GetSpecChangeDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.SpecChangeDate
+	}
+	return nil
 }
 
 // RecommendedResources holds the request and limit values for a resource.
@@ -243,7 +296,7 @@ type RecommendedResources struct {
 
 func (x *RecommendedResources) Reset() {
 	*x = RecommendedResources{}
-	mi := &file_kubexrecommendation_proto_msgTypes[2]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -255,7 +308,7 @@ func (x *RecommendedResources) String() string {
 func (*RecommendedResources) ProtoMessage() {}
 
 func (x *RecommendedResources) ProtoReflect() protoreflect.Message {
-	mi := &file_kubexrecommendation_proto_msgTypes[2]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -268,7 +321,7 @@ func (x *RecommendedResources) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecommendedResources.ProtoReflect.Descriptor instead.
 func (*RecommendedResources) Descriptor() ([]byte, []int) {
-	return file_kubexrecommendation_proto_rawDescGZIP(), []int{2}
+	return file_proto_kubexrecommendation_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RecommendedResources) GetRequest() *ResourceLimit {
@@ -296,7 +349,7 @@ type ResourceLimit struct {
 
 func (x *ResourceLimit) Reset() {
 	*x = ResourceLimit{}
-	mi := &file_kubexrecommendation_proto_msgTypes[3]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -308,7 +361,7 @@ func (x *ResourceLimit) String() string {
 func (*ResourceLimit) ProtoMessage() {}
 
 func (x *ResourceLimit) ProtoReflect() protoreflect.Message {
-	mi := &file_kubexrecommendation_proto_msgTypes[3]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -321,7 +374,7 @@ func (x *ResourceLimit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceLimit.ProtoReflect.Descriptor instead.
 func (*ResourceLimit) Descriptor() ([]byte, []int) {
-	return file_kubexrecommendation_proto_rawDescGZIP(), []int{3}
+	return file_proto_kubexrecommendation_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ResourceLimit) GetCpu() string {
@@ -349,7 +402,7 @@ type OwnerReference struct {
 
 func (x *OwnerReference) Reset() {
 	*x = OwnerReference{}
-	mi := &file_kubexrecommendation_proto_msgTypes[4]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -361,7 +414,7 @@ func (x *OwnerReference) String() string {
 func (*OwnerReference) ProtoMessage() {}
 
 func (x *OwnerReference) ProtoReflect() protoreflect.Message {
-	mi := &file_kubexrecommendation_proto_msgTypes[4]
+	mi := &file_proto_kubexrecommendation_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -374,7 +427,7 @@ func (x *OwnerReference) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OwnerReference.ProtoReflect.Descriptor instead.
 func (*OwnerReference) Descriptor() ([]byte, []int) {
-	return file_kubexrecommendation_proto_rawDescGZIP(), []int{4}
+	return file_proto_kubexrecommendation_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *OwnerReference) GetName() string {
@@ -391,11 +444,11 @@ func (x *OwnerReference) GetKind() string {
 	return ""
 }
 
-var File_kubexrecommendation_proto protoreflect.FileDescriptor
+var File_proto_kubexrecommendation_proto protoreflect.FileDescriptor
 
-const file_kubexrecommendation_proto_rawDesc = "" +
+const file_proto_kubexrecommendation_proto_rawDesc = "" +
 	"\n" +
-	"\x19kubexrecommendation.proto\x12\x05model\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcf\x01\n" +
+	"\x1fproto/kubexrecommendation.proto\x12\x05model\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcf\x01\n" +
 	"\x13KubexRecommendation\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04kind\x18\x02 \x01(\tR\x04kind\x12\x1c\n" +
@@ -403,22 +456,27 @@ const file_kubexrecommendation_proto_rawDesc = "" +
 	"\x10owner_references\x18\x04 \x03(\v2\x15.model.OwnerReferenceR\x0fownerReferences\x120\n" +
 	"\n" +
 	"containers\x18\x05 \x03(\v2\x10.model.ContainerR\n" +
-	"containers\"\xea\x04\n" +
+	"containers\"\xc3\x04\n" +
 	"\tContainer\x12\x1c\n" +
 	"\tcontainer\x18\x01 \x01(\tR\tcontainer\x12\x1b\n" +
 	"\tentity_id\x18\x02 \x01(\tR\bentityId\x12!\n" +
 	"\fcontainer_id\x18\x03 \x01(\tR\vcontainerId\x12-\n" +
 	"\x12automation_enabled\x18\x04 \x01(\bR\x11automationEnabled\x12-\n" +
-	"\x12suspend_automation\x18\x05 \x01(\bR\x11suspendAutomation\x12!\n" +
-	"\fsuspended_on\x18\x06 \x01(\tR\vsuspendedOn\x12.\n" +
+	"\x12suspend_automation\x18\x05 \x01(\bR\x11suspendAutomation\x12=\n" +
+	"\fsuspended_on\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\vsuspendedOn\x12.\n" +
 	"\x13hpa_scaling_metrics\x18\a \x03(\tR\x11hpaScalingMetrics\x12P\n" +
 	"\x15recommended_resources\x18\b \x03(\v2\x1b.model.RecommendedResourcesR\x14recommendedResources\x12;\n" +
 	"\vanalyzed_on\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"analyzedOn\x12H\n" +
 	"\x11current_resources\x18\n" +
-	" \x03(\v2\x1b.model.RecommendedResourcesR\x10currentResources\x12.\n" +
-	"\x13avg_container_count\x18\v \x01(\x05R\x11avgContainerCount\x12E\n" +
-	"\x1festimated_savings_per_container\x18\f \x01(\x01R\x1cestimatedSavingsPerContainer\"r\n" +
+	" \x03(\v2\x1b.model.RecommendedResourcesR\x10currentResources\x122\n" +
+	"\vowner_specs\x18\v \x01(\v2\x11.model.OwnerSpecsR\n" +
+	"ownerSpecs\"\xd4\x01\n" +
+	"\n" +
+	"OwnerSpecs\x12>\n" +
+	"\fcurrent_spec\x18\x01 \x03(\v2\x1b.model.RecommendedResourcesR\vcurrentSpec\x12@\n" +
+	"\rprevious_spec\x18\x02 \x03(\v2\x1b.model.RecommendedResourcesR\fpreviousSpec\x12D\n" +
+	"\x10spec_change_date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0especChangeDate\"r\n" +
 	"\x14RecommendedResources\x12.\n" +
 	"\arequest\x18\x01 \x01(\v2\x14.model.ResourceLimitR\arequest\x12*\n" +
 	"\x05limit\x18\x02 \x01(\v2\x14.model.ResourceLimitR\x05limit\"9\n" +
@@ -430,61 +488,67 @@ const file_kubexrecommendation_proto_rawDesc = "" +
 	"\x04kind\x18\x02 \x01(\tR\x04kindB.Z,densify.com/container-automation-model/modelb\x06proto3"
 
 var (
-	file_kubexrecommendation_proto_rawDescOnce sync.Once
-	file_kubexrecommendation_proto_rawDescData []byte
+	file_proto_kubexrecommendation_proto_rawDescOnce sync.Once
+	file_proto_kubexrecommendation_proto_rawDescData []byte
 )
 
-func file_kubexrecommendation_proto_rawDescGZIP() []byte {
-	file_kubexrecommendation_proto_rawDescOnce.Do(func() {
-		file_kubexrecommendation_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_kubexrecommendation_proto_rawDesc), len(file_kubexrecommendation_proto_rawDesc)))
+func file_proto_kubexrecommendation_proto_rawDescGZIP() []byte {
+	file_proto_kubexrecommendation_proto_rawDescOnce.Do(func() {
+		file_proto_kubexrecommendation_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_kubexrecommendation_proto_rawDesc), len(file_proto_kubexrecommendation_proto_rawDesc)))
 	})
-	return file_kubexrecommendation_proto_rawDescData
+	return file_proto_kubexrecommendation_proto_rawDescData
 }
 
-var file_kubexrecommendation_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_kubexrecommendation_proto_goTypes = []any{
+var file_proto_kubexrecommendation_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_proto_kubexrecommendation_proto_goTypes = []any{
 	(*KubexRecommendation)(nil),   // 0: model.KubexRecommendation
 	(*Container)(nil),             // 1: model.Container
-	(*RecommendedResources)(nil),  // 2: model.RecommendedResources
-	(*ResourceLimit)(nil),         // 3: model.ResourceLimit
-	(*OwnerReference)(nil),        // 4: model.OwnerReference
-	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
+	(*OwnerSpecs)(nil),            // 2: model.OwnerSpecs
+	(*RecommendedResources)(nil),  // 3: model.RecommendedResources
+	(*ResourceLimit)(nil),         // 4: model.ResourceLimit
+	(*OwnerReference)(nil),        // 5: model.OwnerReference
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
-var file_kubexrecommendation_proto_depIdxs = []int32{
-	4, // 0: model.KubexRecommendation.owner_references:type_name -> model.OwnerReference
-	1, // 1: model.KubexRecommendation.containers:type_name -> model.Container
-	2, // 2: model.Container.recommended_resources:type_name -> model.RecommendedResources
-	5, // 3: model.Container.analyzed_on:type_name -> google.protobuf.Timestamp
-	2, // 4: model.Container.current_resources:type_name -> model.RecommendedResources
-	3, // 5: model.RecommendedResources.request:type_name -> model.ResourceLimit
-	3, // 6: model.RecommendedResources.limit:type_name -> model.ResourceLimit
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+var file_proto_kubexrecommendation_proto_depIdxs = []int32{
+	5,  // 0: model.KubexRecommendation.owner_references:type_name -> model.OwnerReference
+	1,  // 1: model.KubexRecommendation.containers:type_name -> model.Container
+	6,  // 2: model.Container.suspended_on:type_name -> google.protobuf.Timestamp
+	3,  // 3: model.Container.recommended_resources:type_name -> model.RecommendedResources
+	6,  // 4: model.Container.analyzed_on:type_name -> google.protobuf.Timestamp
+	3,  // 5: model.Container.current_resources:type_name -> model.RecommendedResources
+	2,  // 6: model.Container.owner_specs:type_name -> model.OwnerSpecs
+	3,  // 7: model.OwnerSpecs.current_spec:type_name -> model.RecommendedResources
+	3,  // 8: model.OwnerSpecs.previous_spec:type_name -> model.RecommendedResources
+	6,  // 9: model.OwnerSpecs.spec_change_date:type_name -> google.protobuf.Timestamp
+	4,  // 10: model.RecommendedResources.request:type_name -> model.ResourceLimit
+	4,  // 11: model.RecommendedResources.limit:type_name -> model.ResourceLimit
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
-func init() { file_kubexrecommendation_proto_init() }
-func file_kubexrecommendation_proto_init() {
-	if File_kubexrecommendation_proto != nil {
+func init() { file_proto_kubexrecommendation_proto_init() }
+func file_proto_kubexrecommendation_proto_init() {
+	if File_proto_kubexrecommendation_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_kubexrecommendation_proto_rawDesc), len(file_kubexrecommendation_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_kubexrecommendation_proto_rawDesc), len(file_proto_kubexrecommendation_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_kubexrecommendation_proto_goTypes,
-		DependencyIndexes: file_kubexrecommendation_proto_depIdxs,
-		MessageInfos:      file_kubexrecommendation_proto_msgTypes,
+		GoTypes:           file_proto_kubexrecommendation_proto_goTypes,
+		DependencyIndexes: file_proto_kubexrecommendation_proto_depIdxs,
+		MessageInfos:      file_proto_kubexrecommendation_proto_msgTypes,
 	}.Build()
-	File_kubexrecommendation_proto = out.File
-	file_kubexrecommendation_proto_goTypes = nil
-	file_kubexrecommendation_proto_depIdxs = nil
+	File_proto_kubexrecommendation_proto = out.File
+	file_proto_kubexrecommendation_proto_goTypes = nil
+	file_proto_kubexrecommendation_proto_depIdxs = nil
 }
