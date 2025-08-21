@@ -1,5 +1,5 @@
 module github.com/densify-dev/container-automation-model
 
-go 1.24.1
+go 1.24.3
 
-require google.golang.org/protobuf v1.36.7
+require google.golang.org/protobuf v1.36.8
