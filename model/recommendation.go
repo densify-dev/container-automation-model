@@ -35,13 +35,10 @@ func (r *Recommendation) Validate() error {
 	return validate.Struct(r)
 }
 
-func FilterValidRecommendations(recs []*Recommendation) ([]*Recommendation, error) {
-	validRecs := make([]*Recommendation, 0, len(recs))
+func FilterValidRecommendations(recs []Recommendation) ([]Recommendation, error) {
+	validRecs := make([]Recommendation, 0, len(recs))
 	var err error
 	for _, rec := range recs {
-		if rec == nil {
-			continue
-		}
 		if err1 := rec.Validate(); err1 == nil {
 			validRecs = append(validRecs, rec)
 		} else {
