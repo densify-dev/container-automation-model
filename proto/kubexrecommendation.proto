@@ -24,9 +24,9 @@ message Container {
   bool suspend_automation = 5;
   google.protobuf.Timestamp suspended_on = 6;
   repeated string hpa_scaling_metrics = 7;
-  repeated RecommendedResources recommended_resources = 8;
+  RecommendedResources recommended_resources = 8;
   google.protobuf.Timestamp analyzed_on = 9;
-  repeated RecommendedResources current_resources = 10;
+  RecommendedResources current_resources = 10;
   OwnerSpecs owner_specs = 11;
 }
 

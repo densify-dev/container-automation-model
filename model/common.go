@@ -6,6 +6,9 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/go-playground/validator/v10"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type Resource string
@@ -93,3 +96,21 @@ func GetPodName() string {
 	}
 	return strings.ToLower(hostname)
 }
+
+func NewTimestamp(t *time.Time) (ts *timestamppb.Timestamp) {
+	if t != nil {
+		ts = timestamppb.New(*t)
+	}
+	return
+}
+
+func AsTime(ts *timestamppb.Timestamp) (t *time.Time) {
+	// IsValid checks for nil as well as for proper value ranges.
+	if ts.IsValid() {
+		tt := ts.AsTime()
+		t = &tt
+	}
+	return
+}
+
+var validate = validator.New(validator.WithRequiredStructEnabled())
