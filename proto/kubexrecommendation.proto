@@ -4,7 +4,7 @@ package model;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "densify.com/container-automation-model/model";
+option go_package = "github.com/densify-dev/container-automation-model/model";
 
 // KubexRecommendation is the top-level message for a recommendation.
 message KubexRecommendation {

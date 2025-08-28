@@ -485,7 +485,7 @@ const file_kubexrecommendation_proto_rawDesc = "" +
 	"\x06memory\x18\x02 \x01(\tR\x06memory\"8\n" +
 	"\x0eOwnerReference\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
-	"\x04kind\x18\x02 \x01(\tR\x04kindB.Z,densify.com/container-automation-model/modelb\x06proto3"
+	"\x04kind\x18\x02 \x01(\tR\x04kindB9Z7github.com/densify-dev/container-automation-model/modelb\x06proto3"
 
 var (
 	file_kubexrecommendation_proto_rawDescOnce sync.Once
