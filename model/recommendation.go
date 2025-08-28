@@ -16,15 +16,15 @@ type Recommendation struct {
 	Container                    string     `json:"container" validate:"required"`
 	EntityId                     string     `json:"entityId" validate:"required"`
 	ContainerId                  string     `json:"containerId" validate:"required"`
-	AvgContainerCount            int        `json:"avgContainerCount"`
-	CurrentCpuRequestMCores      int64      `json:"currentCpuRequestmCores"`
-	CurrentCpuLimitMCores        int64      `json:"currentCpuLimitmCores"`
-	CurrentMemRequestBytes       int64      `json:"currentMemRequestBytes"`
-	CurrentMemLimitBytes         int64      `json:"currentMemLimitBytes"`
-	RecommendedCpuRequestMCores  int64      `json:"recommendedCpuRequestmCores"`
-	RecommendedCpuLimitMCores    int64      `json:"recommendedCpuLimitmCores"`
-	RecommendedMemRequestBytes   int64      `json:"recommendedMemRequestBytes"`
-	RecommendedMemLimitBytes     int64      `json:"recommendedMemLimitBytes"`
+	AvgContainerCount            int        `json:"avgContainerCount" validate:"min=0"`
+	CurrentCpuRequestMCores      int64      `json:"currentCpuRequestmCores" validate:"min=0"`
+	CurrentCpuLimitMCores        int64      `json:"currentCpuLimitmCores" validate:"min=0"`
+	CurrentMemRequestBytes       int64      `json:"currentMemRequestBytes" validate:"min=0"`
+	CurrentMemLimitBytes         int64      `json:"currentMemLimitBytes" validate:"min=0"`
+	RecommendedCpuRequestMCores  int64      `json:"recommendedCpuRequestmCores" validate:"min=0"`
+	RecommendedCpuLimitMCores    int64      `json:"recommendedCpuLimitmCores" validate:"min=0"`
+	RecommendedMemRequestBytes   int64      `json:"recommendedMemRequestBytes" validate:"min=0"`
+	RecommendedMemLimitBytes     int64      `json:"recommendedMemLimitBytes" validate:"min=0"`
 	EstimatedSavingsPerContainer float64    `json:"estimatedSavingsPerContainer"`
 	AnalyzedOn                   time.Time  `json:"analyzedOn" validate:"required"`
 	HpaMetricName                string     `json:"hpaMetricName"`
