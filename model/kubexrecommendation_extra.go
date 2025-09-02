@@ -4,6 +4,13 @@ import (
 	"time"
 )
 
+func (x *KubexRecommendation) IsZero() bool {
+	return len(x.GetContainers()) == 0 ||
+		len(x.GetOwnerReferences()) == 0 ||
+		x.GetNamespace() == Empty ||
+		x.GetName() == Empty
+}
+
 // SetAnalyzedOnTime is a utility method to set the AnalyzedOn field from a time.Time.
 func (x *Container) SetAnalyzedOnTime(t *time.Time) {
 	if x != nil {
